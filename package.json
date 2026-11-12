@@ -1,0 +1,30 @@
+{
+  "name": "snake-nexus",
+  "version": "1.0.0",
+  "description": "SNAKE NEXUS — Multiplayer 2D Battle & 3D Cube Conquest",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "server": "node server/src/index.js",
+    "client": "npm --prefix client run dev",
+    "dev": "node scripts/dev.js",
+    "build": "npm --prefix client run build",
+    "test": "node --test test/*.test.js",
+    "test:load": "node server/test/loadSimulation.test.js"
+  },
+  "devDependencies": {
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
+  },
+  "keywords": [
+    "snake",
+    "phaser3",
+    "threejs",
+    "socketio",
+    "multiplayer",
+    "3d-cube"
+  ],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SNAKE NEXUS — Multiplayer 2D Battle & 3D Cube Conquest</title>
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+  <div id="game-app">
+    <!-- Phaser 2D Canvas Container -->
+    <div id="phaser-container"></div>
+
+    <!-- Three.js 3D Canvas Container -->
+    <div id="three-container"></div>
+
+    <!-- Top HUD Overlay -->
+    <div id="top-hud">
+      <div id="hud-left" class="hud-pill">
+        <span id="hud-mode-badge">SNAKE NEXUS</span>
+      </div>
+      <div id="hud-center"></div>
+      <div id="hud-right" class="hud-pill interactive-panel" style="display:none;">
+        <span id="hud-score-label">SCORE: 0</span>
+      </div>
+    </div>
+
+    <!-- 3D Cube Interactive Controls Bar -->
+    <div id="cube-controls-bar" class="interactive-panel">
+      <button class="cube-pill-btn" id="btn-cube-reset">Center View</button>
+      <button class="cube-pill-btn" id="btn-face-front">Front</button>
+      <button class="cube-pill-btn" id="btn-face-back">Back</button>
+      <button class="cube-pill-btn" id="btn-face-left">Left</button>
+      <button class="cube-pill-btn" id="btn-face-right">Right</button>
+      <button class="cube-pill-btn" id="btn-face-top">Top</button>
+      <button class="cube-pill-btn" id="btn-face-bottom">Bottom</button>
+      <button class="cube-pill-btn" id="btn-cube-rotate">Auto-Rotate</button>
+      <button class="cube-pill-btn" id="btn-cube-exit" style="color:var(--magenta); border-color:var(--magenta);">Exit to Menu</button>
+    </div>
+
+    <!-- UI Overlay Layer for HTML Modals and Scoreboards -->
+    <div id="ui-overlay"></div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
+

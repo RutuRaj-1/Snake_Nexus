@@ -1,0 +1,239 @@
+/* Snake Nexus — Modern Cyber Arcade Styling */
+
+:root {
+  --bg-dark: #0a0c14;
+  --bg-card: rgba(16, 22, 36, 0.88);
+  --border-neon: rgba(0, 240, 255, 0.35);
+  --cyan: #00f0ff;
+  --magenta: #ff007f;
+  --lime: #39ff14;
+  --gold: #ffea00;
+  --purple: #b026ff;
+  --text-main: #f1f5f9;
+  --text-dim: #94a3b8;
+  --font-display: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Consolas', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-display);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.05) 0%, transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+}
+
+#game-app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#phaser-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+#three-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  display: none;
+  background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+}
+
+/* UI Overlay Layer */
+#ui-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.interactive-panel {
+  pointer-events: auto;
+}
+
+/* Generic Modal / Dialog */
+.nexus-modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border-neon);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.2), inset 0 0 20px rgba(0, 240, 255, 0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(16px);
+  padding: 24px;
+  color: var(--text-main);
+}
+
+/* Buttons */
+.nexus-btn {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(0, 240, 255, 0.05));
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  outline: none;
+}
+
+.nexus-btn:hover {
+  background: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+.nexus-btn:active {
+  transform: translateY(1px);
+}
+
+.nexus-btn.magenta {
+  border-color: var(--magenta);
+  color: var(--magenta);
+  background: linear-gradient(135deg, rgba(255, 0, 127, 0.15), rgba(255, 0, 127, 0.05));
+}
+.nexus-btn.magenta:hover {
+  background: rgba(255, 0, 127, 0.3);
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+}
+
+.nexus-btn.gold {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: linear-gradient(135deg, rgba(255, 234, 0, 0.15), rgba(255, 234, 0, 0.05));
+}
+.nexus-btn.gold:hover {
+  background: rgba(255, 234, 0, 0.3);
+  box-shadow: 0 0 15px rgba(255, 234, 0, 0.5);
+}
+
+/* Cube 3D Controls Bar */
+#cube-controls-bar {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 30px;
+  padding: 8px 18px;
+  gap: 10px;
+  z-index: 25;
+  backdrop-filter: blur(8px);
+}
+
+.cube-pill-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cube-pill-btn:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+.cube-pill-btn.active {
+  background: var(--cyan);
+  color: #000;
+  font-weight: bold;
+}
+
+/* 2D Fallback Modal for 3D Cube */
+#face-selector-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: none;
+  z-index: 25;
+  background: rgba(15, 23, 42, 0.9);
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  font-size: 13px;
+}
+
+/* Top HUD for In-Game Overlay */
+#top-hud {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  pointer-events: none;
+  z-index: 22;
+}
+
+.hud-pill {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cyan);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  backdrop-filter: blur(6px);
+}
+
+/* Animations */
+@keyframes neon-pulse {
+  0% { box-shadow: 0 0 5px rgba(0, 240, 255, 0.4); }
+  50% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.8); }
+  100% { box-shadow: 0 0 5px rgba(0, 240, 255, 0.4); }
+}
+
+.glow-cyan {
+  animation: neon-pulse 2s infinite ease-in-out;
+}
+
